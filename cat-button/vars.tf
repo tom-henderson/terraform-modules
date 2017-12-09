@@ -1,0 +1,3 @@
+variable "numbers" {
+  default = []
+}
