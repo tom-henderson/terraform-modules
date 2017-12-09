@@ -7,6 +7,24 @@ module "lambda" {
 
   environment_variables = {
     slack_api_token_parameter = "${var.slack_api_token_parameter}"
-    sns_queue_name_parameter  = "${var.sns_queue_name_parameter}"
+    sns_topic_name            = "${aws_sns_topic.topic.name}"
   }
+}
+
+resource "aws_sns_topic" "topic" {
+  name = "${module.lambda.function_name}"
+}
+
+resource "aws_sns_topic_subscription" "subscription" {
+  topic_arn = "${aws_sns_topic.topic.arn}"
+  protocol  = "lambda"
+  endpoint  = "${module.lambda.arn}"
+}
+
+resource "aws_lambda_permission" "allow_execution_from_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = "${module.lambda.function_name}"
+  principal     = "sns.amazonaws.com"
+  source_arn    = "${aws_sns_topic.topic.arn}"
 }
