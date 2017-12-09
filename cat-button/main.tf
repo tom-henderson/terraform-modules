@@ -8,3 +8,15 @@ resource "aws_sns_topic_subscription" "subscription" {
   protocol  = "sms"
   endpoint  = "${element(var.numbers, count.index)}"
 }
+
+module "lambda" {
+  source      = "../lambda"
+  name        = "cat_pictures_lambda"
+  description = "Put cat photo urls onto cat-pictures SNS topic."
+  source_code = "${path.module}/lambda.zip"
+  module_name = "lambda"
+
+  environment_variables = {
+    sns_topic = "${aws_sns_topic.cats.arn}"
+  }
+}
