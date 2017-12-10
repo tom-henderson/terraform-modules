@@ -22,21 +22,10 @@ module "lambda" {
 }
 
 resource "aws_lambda_permission" "allow_execution_from_sns" {
-  count         = "${length(var.button_serials)}"
-  statement_id  = "AllowExecutionFromIoT"
-  action        = "lambda:InvokeFunction"
-  function_name = "${module.lambda.function_name}"
-  principal     = "iot.amazonaws.com"
-
-  condition = {
-    test     = "StringEquals"
-    variable = "AWS:SourceAccount"
-    values   = ["${local.account_id}"]
-  }
-
-  condition = {
-    test     = "ArnLike"
-    variable = "AWS:SourceArn"
-    values   = ["arn:aws:iot:${local.region}:${local.account_id}:rule/iotbutton_${var.button_serial}"]
-  }
+  statement_id   = "AllowExecutionFromIoT"
+  action         = "lambda:InvokeFunction"
+  function_name  = "${module.lambda.function_name}"
+  principal      = "iot.amazonaws.com"
+  source_account = "${local.account_id}"
+  source_arn     = "arn:aws:iot:${local.region}:${local.account_id}:rule/iotbutton_${var.button_serial}"
 }
