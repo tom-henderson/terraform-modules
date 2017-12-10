@@ -29,3 +29,6 @@ resource "aws_lambda_permission" "allow_execution_from_sns" {
   source_account = "${local.account_id}"
   source_arn     = "arn:aws:iot:${local.region}:${local.account_id}:rule/iotbutton_${var.button_serial}"
 }
+
+# Still need to manually add the IoT Action on the button because terraform doesn't do it.
+
