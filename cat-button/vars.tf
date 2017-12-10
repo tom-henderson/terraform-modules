@@ -1,7 +1,9 @@
-variable "numbers" {
-  default = []
+variable "phone_numbers" {
+  description = "Phone numbers to subscribe"
+  default     = []
 }
 
-variable "button_serial" {
-  description = "Serial number of IoT button to trigger lambda"
+variable "button_serials" {
+  description = "Serial number of IoT buttons to trigger lambda"
+  default     = []
 }

@@ -22,8 +22,10 @@ def lambda_handler(event, context):
 
     image = get_image()
 
-    response = sns.publish(
-        TargetArn=sns_topic,
-        Message=image,
-        MessageStructure='text'
-    )
+    print "Got image {}".format(image)
+
+    # response = sns.publish(
+    #     TargetArn=sns_topic,
+    #     Message=image,
+    #     MessageStructure='text'
+    # )
