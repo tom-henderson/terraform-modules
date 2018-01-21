@@ -29,3 +29,7 @@ variable "log_retention_in_days" {
 variable "environment_variables" {
   default = {}
 }
+
+variable "schedule" {
+  default = "NONE"
+}
