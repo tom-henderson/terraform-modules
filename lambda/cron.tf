@@ -16,7 +16,7 @@ resource "aws_lambda_permission" "allow_execution_from_cloudwatch" {
   count         = "${var.schedule == "NONE" ? 0 : 1}"
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.aws_lambda_function.function_name}"
+  function_name = "${aws_lambda_function.lambda.function_name}"
   principal     = "events.amazonaws.com"
   source_arn    = "${aws_cloudwatch_event_rule.event_rule.arn}"
 }
