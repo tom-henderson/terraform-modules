@@ -30,6 +30,10 @@ variable "environment_variables" {
   default = {}
 }
 
+variable "ssm_parameters" {
+  default = []
+}
+
 variable "schedule" {
   default = "NONE"
 }
