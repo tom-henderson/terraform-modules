@@ -5,6 +5,11 @@ module "lambda" {
   source_code = "${path.module}/dyndns.zip"
   module_name = "dyndns"
 
+  ssm_parameters = [
+    "${var.username_parameter}",
+    "${var.password_parameter}",
+  ]
+
   environment_variables = {
     username_parameter = "${var.username_parameter}"
     password_parameter = "${var.password_parameter}"

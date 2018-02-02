@@ -3,15 +3,6 @@ data "aws_iam_policy_document" "allow_update_route53_records" {
     actions   = ["route53:ChangeResourceRecordSets"]
     resources = ["arn:aws:route53:::hostedzone/${var.zone_id}"]
   }
-
-  statement {
-    actions = ["ssm:GetParameters"]
-
-    resources = [
-      "arn:aws:ssm:${module.lambda.region}:${local.account_id}:parameter/${var.username_parameter}",
-      "arn:aws:ssm:${module.lambda.region}:${local.account_id}:parameter/${var.password_parameter}",
-    ]
-  }
 }
 
 resource "aws_iam_policy" "allow_update_route53_records" {
