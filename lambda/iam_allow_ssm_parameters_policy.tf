@@ -3,7 +3,7 @@ data "aws_iam_policy_document" "read_ssm_parameters" {
 
   statement {
     actions   = ["ssm:GetParameters"]
-    resources = ["${formatlist("arn:aws:ssm:::parameter/%s", var.ssm_parameters)}"]
+    resources = ["${formatlist("arn:aws:ssm:${local.region}:${local.account_id}:parameter/%s", var.ssm_parameters)}"]
   }
 }
 
