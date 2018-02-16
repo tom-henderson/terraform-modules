@@ -1,6 +1,6 @@
 module "lambda" {
   source                = "../lambda"
-  name                  = "${local.module_name}_lambda"
+  name                  = "${var.name}_lambda"
   description           = "${var.description}"
   source_code           = "${var.source_code}"
   module_name           = "${var.module_name}"
