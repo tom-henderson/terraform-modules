@@ -1,6 +1,9 @@
 variable "name" {}
-variable "description" {}
 variable "source_code" {}
+
+variable "description" {
+  default = "A function that handles a Slack slash command."
+}
 
 variable "runtime" {
   default = "python2.7"
