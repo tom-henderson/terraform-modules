@@ -37,3 +37,7 @@ output "lambda_name" {
 output "lambda_function_name" {
   value = "${module.lambda.function_name}"
 }
+
+output "iam_role_name" {
+  value = "${module.lambda.iam_role_name}"
+}
