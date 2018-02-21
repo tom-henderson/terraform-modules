@@ -9,13 +9,8 @@ data "aws_iam_policy_document" "allow_cloudwatch_logs" {
   }
 }
 
-resource "aws_iam_policy" "allow_cloudwatch_logs" {
+resource "aws_iam_role_policy" "allow_cloudwatch_logs" {
   name   = "${var.name}_allow_cloudwatch_logs_policy"
-  path   = "/"
   policy = "${data.aws_iam_policy_document.allow_cloudwatch_logs.json}"
-}
-
-resource "aws_iam_role_policy_attachment" "allow_cloudwatch_logs" {
-  role       = "${aws_iam_role.lambda.name}"
-  policy_arn = "${aws_iam_policy.allow_cloudwatch_logs.arn}"
+  role   = "${aws_iam_role.lambda.name}"
 }
