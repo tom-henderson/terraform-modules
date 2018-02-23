@@ -30,12 +30,6 @@ resource "aws_api_gateway_deployment" "deployment" {
   depends_on  = ["aws_api_gateway_integration.integration"]
 }
 
-resource "aws_api_gateway_stage" "production" {
-  rest_api_id   = "${aws_api_gateway_rest_api.api.id}"
-  stage_name    = "production"
-  deployment_id = "${aws_api_gateway_deployment.deployment.id}"
-}
-
 output "slash_command_invocation_url" {
   value = "${aws_api_gateway_deployment.deployment.invoke_url}${aws_api_gateway_resource.resource.path}"
 }
