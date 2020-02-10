@@ -27,8 +27,8 @@ resource "aws_api_gateway_method" "method" {
   request_validator_id = "${aws_api_gateway_request_validator.validate_request_parameters.id}"
 
   request_parameters {
-    "method.request.querystring.hostname" = true
-    "method.request.querystring.myip"     = true
+    method.request.querystring.hostname = true
+    method.request.querystring.myip     = true
   }
 }
 
